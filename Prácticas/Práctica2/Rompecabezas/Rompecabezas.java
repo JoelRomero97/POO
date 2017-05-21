@@ -19,13 +19,13 @@ import java.util.*;
 //// Autor: Romero Gamarra Joel Mauricio                                            ////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-public class Rompecabezas extends Applet
+public class Rompecabezas extends Applet implements ActionListener
 {
     private JButton rompecabezas [];                                           //Arreglo de botones del rompecabezas
     private int filasRompecabezas = 4, columnasRompecabezas = 4;        //Filas y columnas que tendrá el rompecabezas
     private int anchoImagen, alturaImagen;                              //Ancho y Alto de la imagen
     private int anchoCelda, altoCelda;                                  //Ancho y Alto de una celda
-    private int ultimaCelda;                                            //Ultima celda que irá de color negro
+    private int ultimaCelda, ultimaCeldaAleatoria;                      //Ultima celda que irá de color negro
     private int numeroCeldas;                                           //Numero de celdas
     private Image [] celda;                                             //Arreglo de imagenes
     private int [] orden;                                               //Orden de las imagenes
@@ -38,6 +38,7 @@ public class Rompecabezas extends Applet
     private Image negro;                                                //Imagen de color negro que usaremos en la ultima celda
     private int ordenAleatorio [];                                      //Arreglo de numeros aleatorio
     private Random rand;                                                //Para obtener los valores aleatorios
+    private JButton boton;                                              //Botón para obtener el evento en el ActionPerformed
 
     public void inicializaVariables ()
     {
@@ -48,7 +49,7 @@ public class Rompecabezas extends Applet
         anchoCelda = anchoImagen / columnasRompecabezas;                                    //Calculamos el ancho de una celda
         altoCelda = alturaImagen / filasRompecabezas;                                       //Calculamos el alto de una celda
         numeroCeldas = filasRompecabezas * columnasRompecabezas;                            //Calculamos el número de celdas
-        ultimaCelda = numeroCeldas - 1;                                                     //Obtenemos la celda que será de color negro  
+        ultimaCelda = numeroCeldas - 1;                                                     //Obtenemos la celda que será de color negro
         celda = new Image [numeroCeldas];                                                   //Creamos un arreglo de objetos tipo Image
         orden = new int [numeroCeldas];                                                     //Creamos un arreglo de objetos tipo int
         rompecabezas = new JButton[numeroCeldas];                                           //Creamos un arreglo de objetos tipo JButton
@@ -95,6 +96,15 @@ public class Rompecabezas extends Applet
         {
             System.out.println ("Numero: " + ordenAleatorio[j]);
         }
+        for (int i = 0; i < numeroCeldas; i ++)
+        {
+            if (ordenAleatorio [i] == orden[ultimaCelda])
+            {
+                System.out.println ("Ultima celda: " + ordenAleatorio[i] + " en la posicion " + i);
+                ultimaCeldaAleatoria = i;
+                break;
+            }
+        }
     }
 
     public void consruyeVentana ()
@@ -111,27 +121,23 @@ public class Rompecabezas extends Applet
         for (int i = 0; i < numeroCeldas; i ++)
         {
             if ( ordenAleatorio[i] != ultimaCelda) 
-                rompecabezas[i].setIcon (new ImageIcon (celda[ordenAleatorio[i]]));             //Si no es la ultima celda, la dejamos normal
+                rompecabezas[i].setIcon (new ImageIcon (celda[ordenAleatorio[i]]));         //Si no es la ultima celda, la dejamos normal
             else
             {
-                rompecabezas[i].setIcon (new ImageIcon (imagenNegraFinal));            //Si es la última celda, la ponemos de color negro
+                rompecabezas[i].setIcon (new ImageIcon (imagenNegraFinal));                 //Si es la última celda, la ponemos de color negro
             }
+            rompecabezas[i].addActionListener (this);                                       //Agregamos el escucha a cada uno de los botones
         }
     }
 
-    /*public void actionPerformed (ActionEvent e)
+    public void actionPerformed (ActionEvent e)
     {
         boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
-        anioActual = anioActualIntroducido.getText ();                          //Recibimos la cadena 1 introducida por el usuario
-        anioNacimiento = anioNacimientoIntroducido.getText ();                  //Recibimos la cadena 2 introducida por el usuario
-        fechaHoy = Integer.parseInt (anioActual);                               //Convertimos a entero la cadena 1 para hacer el cálculo
-        fechaUsuario = Integer.parseInt (anioNacimiento);                       //Convertimos a entero la cadena 2 para hacer el cálculo
-        if (boton == aceptar)                                                   //Igualamos el botón recien creado con el botón del método construyePanelInferior
+        if (boton != rompecabezas[ultimaCeldaAleatoria])
         {
-            calculo = fechaHoy - fechaUsuario;                                  //Realizamos el cálculo de la edad actual
-            calculoEdad.setText ("Su edad es de " + calculo + " a\u00f1os.");   //Imprimimos el resultado en el objeto de tipo JLabel del método construyePanelInferior
+            System.out.println ("Se hizo click");
         }
-    }*/
+    }
 
     public static void main (String args[])
     {  
