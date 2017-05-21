@@ -110,14 +110,28 @@ public class Rompecabezas extends Applet
     {
         for (int i = 0; i < numeroCeldas; i ++)
         {
-            if ( orden[i] != ultimaCelda) 
-                rompecabezas[i].setIcon (new ImageIcon (celda[orden[i]]));             //Si no es la ultima celda, la dejamos normal
+            if ( ordenAleatorio[i] != ultimaCelda) 
+                rompecabezas[i].setIcon (new ImageIcon (celda[ordenAleatorio[i]]));             //Si no es la ultima celda, la dejamos normal
             else
             {
                 rompecabezas[i].setIcon (new ImageIcon (imagenNegraFinal));            //Si es la última celda, la ponemos de color negro
             }
         }
     }
+
+    /*public void actionPerformed (ActionEvent e)
+    {
+        boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
+        anioActual = anioActualIntroducido.getText ();                          //Recibimos la cadena 1 introducida por el usuario
+        anioNacimiento = anioNacimientoIntroducido.getText ();                  //Recibimos la cadena 2 introducida por el usuario
+        fechaHoy = Integer.parseInt (anioActual);                               //Convertimos a entero la cadena 1 para hacer el cálculo
+        fechaUsuario = Integer.parseInt (anioNacimiento);                       //Convertimos a entero la cadena 2 para hacer el cálculo
+        if (boton == aceptar)                                                   //Igualamos el botón recien creado con el botón del método construyePanelInferior
+        {
+            calculo = fechaHoy - fechaUsuario;                                  //Realizamos el cálculo de la edad actual
+            calculoEdad.setText ("Su edad es de " + calculo + " a\u00f1os.");   //Imprimimos el resultado en el objeto de tipo JLabel del método construyePanelInferior
+        }
+    }*/
 
     public static void main (String args[])
     {  
