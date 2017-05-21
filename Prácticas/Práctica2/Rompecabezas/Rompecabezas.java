@@ -79,7 +79,7 @@ public class Rompecabezas extends Applet implements ActionListener
         imagenNegraFinal = createImage (imagenNegraFiltrada);
     }
 
-    public void construyeArregloAleatorio ()
+    public void revolverRompecabezas ()
     {
         for (int i = 0; i < numeroCeldas; i ++)
         {
@@ -133,9 +133,16 @@ public class Rompecabezas extends Applet implements ActionListener
     public void actionPerformed (ActionEvent e)
     {
         boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
-        if (boton != rompecabezas[ultimaCeldaAleatoria])
+        if (boton != rompecabezas [ultimaCeldaAleatoria])
         {
-            System.out.println ("Se hizo click");
+            if (boton == rompecabezas [ultimaCeldaAleatoria + columnasRompecabezas])
+                System.out.println ("Se hizo click");
+            else if (boton == rompecabezas [ultimaCeldaAleatoria - columnasRompecabezas])
+                System.out.println ("Se hizo click");
+            else if (boton == rompecabezas [ultimaCeldaAleatoria + 1])
+                System.out.println ("Se hizo click");
+            else if (boton == rompecabezas [ultimaCeldaAleatoria - 1])
+                System.out.println ("Se hizo click");
         }
     }
 
@@ -148,7 +155,7 @@ public class Rompecabezas extends Applet implements ActionListener
     {
         inicializaVariables ();                                         //Llamamos al método inicializaVariables
         construyeBotones ();                                            //Llamamos al método construyeBotones
-        construyeArregloAleatorio ();                                   //Llamamos al método construyeArregloAleatorio
+        revolverRompecabezas ();                                        //Llamamos al método revolverRompecabezas
         dibujaRompecabezas ();                                          //Llamamos al método dibujaRompecabezas
         consruyeVentana ();                                             //Llamamos al método construye ventana
     }
