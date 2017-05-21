@@ -39,6 +39,7 @@ public class Rompecabezas extends Applet
     public void inicializaVariables ()
     {
         imagen = (new ImageIcon ("dalmata.jpg")).getImage ();                               //Seleccionamos la imagen para armar
+        negro = (new ImageIcon ("negro.png")).getImage ();                                  //Seleccionamos la imagen de fondo negro
         anchoImagen = imagen.getWidth (null);                                               //Obtenemos el ancho de la imagen
         alturaImagen = imagen.getHeight (null);                                             //Obtenemos la altura de la imagen
         anchoCelda = anchoImagen / columnasRompecabezas;                                    //Calculamos el ancho de una celda
@@ -50,7 +51,7 @@ public class Rompecabezas extends Applet
         boton = new JButton[numeroCeldas];                                                  //Creamos un arreglo de objetos tipo JButton
     }
 
-    public void construyeRompecabezas ()
+    public void construyeBotones ()
     {
         for (int y = 0; y < filasRompecabezas; y ++)
         {
@@ -67,11 +68,6 @@ public class Rompecabezas extends Applet
         {
             add (boton[i] = new JButton (new ImageIcon (celda [orden [i] ])));
         }
-    }
-
-    public void construyeBotonNegro ()
-    {
-        negro = (new ImageIcon ("negro.png")).getImage ();
         imagenNegra = new CropImageFilter (anchoCelda, altoCelda, anchoCelda, altoCelda);
         imagenNegraFiltrada = new FilteredImageSource (negro.getSource (), imagenCortada);
         imagenNegraFinal = createImage (imagenNegraFiltrada);
@@ -91,11 +87,10 @@ public class Rompecabezas extends Applet
         for (int i = 0; i < numeroCeldas; i ++)
         {
             if ( orden[i] != ultimaCelda) 
-                boton[i].setIcon (new ImageIcon (celda[orden[i]]));
+                boton[i].setIcon (new ImageIcon (celda[orden[i]]));             //Si no es la ultima celda, la dejamos normal
             else
             {
-                boton[i].setIcon (new ImageIcon (imagenNegraFinal));
-                boton[i].setBackground (Color.BLACK);
+                boton[i].setIcon (new ImageIcon (imagenNegraFinal));            //Si es la última celda, la ponemos de color negro
             }
         }
     }
@@ -107,9 +102,8 @@ public class Rompecabezas extends Applet
 
      public Rompecabezas()
     {
-        inicializaVariables ();
-        construyeRompecabezas ();                                       //Llamamos al método construyeRompecabezas
-        construyeBotonNegro ();                                         //Llamamos al método construyeBotonNegro
+        inicializaVariables ();                                         //Llamamos al método inicializaVariables
+        construyeBotones ();                                            //Llamamos al método construyeBotones
         dibujaRompecabezas ();                                          //Llamamos al método dibujaRompecabezas
         consruyeVentana ();                                             //Llamamos al método construye ventana
     }
