@@ -21,7 +21,7 @@ import java.util.*;
 
 public class Rompecabezas extends Applet implements ActionListener
 {
-    private JButton rompecabezas [];                                           //Arreglo de botones del rompecabezas
+    private JButton rompecabezas [];                                    //Arreglo de botones del rompecabezas
     private int filasRompecabezas = 4, columnasRompecabezas = 4;        //Filas y columnas que tendrá el rompecabezas
     private int anchoImagen, alturaImagen;                              //Ancho y Alto de la imagen
     private int anchoCelda, altoCelda;                                  //Ancho y Alto de una celda
@@ -30,6 +30,8 @@ public class Rompecabezas extends Applet implements ActionListener
     private Image [] celda;                                             //Arreglo de imagenes
     private int [] orden;                                               //Orden de las imagenes
     private Image imagen;                                               //Imagen a usar como rompecabezas
+    private Image imagenAuxiliar;										//Imagen para obtener la imagen del botón presionado
+    private ImageIcon iconoAuxiliar;									//Icono para poner imagen al boton presionado
     private CropImageFilter imagenCortada;                              //Filtro de imagen cortada
     private CropImageFilter imagenNegra;                                //Filtro de imagen negra cortada
     private FilteredImageSource imagenFiltrada;                         //Imagen con el filtro aplicado
@@ -54,9 +56,9 @@ public class Rompecabezas extends Applet implements ActionListener
         celda = new Image [numeroCeldas];                                                   //Creamos un arreglo de objetos tipo Image
         orden = new int [numeroCeldas];                                                     //Creamos un arreglo de objetos tipo int
         rompecabezas = new JButton[numeroCeldas];                                           //Creamos un arreglo de objetos tipo JButton
-        ordenAleatorio = new int [numeroCeldas];
-        rand = new Random ();
-        ganaste = new JLabel ("");
+        ordenAleatorio = new int [numeroCeldas];											//Creamos un arreglo de enteros
+        rand = new Random ();																//Inicializamos un Random
+        ganaste = new JLabel ("");															//Inicializamos la etiqueta
     }
 
     public void construyeBotones ()
@@ -184,6 +186,20 @@ public class Rompecabezas extends Applet implements ActionListener
         return resp;
     }
 
+    public int obtenerNuevaCeldaNegra (JButton boton)
+    {
+    	int i;
+    	String descripcion;
+    	String descripcionBoton = ((ImageIcon)boton.getIcon()).getDescription();
+    	for (i = 0; i < numeroCeldas; i ++)
+    	{
+    		descripcion = ((ImageIcon)rompecabezas[i].getIcon()).getDescription();
+    		if (descripcion.equals (descripcionBoton))
+    			break;
+    	}
+    	return i;
+    }
+
     public void actionPerformed (ActionEvent e)
     {
     	int filaNegra, columnaNegra;											//Enteros para comparar el boton presionado con la celda negra
@@ -192,7 +208,12 @@ public class Rompecabezas extends Applet implements ActionListener
         filaNegra = celdaNegra / columnasRompecabezas;							//Obtenemos la fila de la celda negra
         if (esCeldaAdyacente (boton, filaNegra, columnaNegra))
         {
-        	System.out.println ("Es adyacente. ");
+        	imagenAuxiliar = ((ImageIcon)boton.getIcon()).getImage();			//Obtenemos la imagen del boton presionado
+        	iconoAuxiliar = new ImageIcon (imagenAuxiliar);						//Convertimos la imagen del boton a un ImageIcon
+        	//int au = obtenerNuevaCeldaNegra (boton);
+        	rompecabezas[celdaNegra].setIcon (iconoAuxiliar);					//Ponemos el ImageIcon en la celda negra
+        	boton.setIcon (new ImageIcon (imagenNegraFinal));					//Ponemos en el boton presionado, la imagen negra
+        	//celdaNegra = au;
         }
     }
 
