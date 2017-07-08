@@ -25,7 +25,7 @@ public class Rompecabezas extends Applet implements ActionListener
     private int filasRompecabezas = 4, columnasRompecabezas = 4;        //Filas y columnas que tendrá el rompecabezas
     private int anchoImagen, alturaImagen;                              //Ancho y Alto de la imagen
     private int anchoCelda, altoCelda;                                  //Ancho y Alto de una celda
-    private int ultimaCelda, ultimaCeldaAleatoria;                      //Ultima celda que irá de color negro
+    private int ultimaCelda, celdaNegra;                      			//Ultima celda que irá de color negro
     private int numeroCeldas;                                           //Numero de celdas
     private Image [] celda;                                             //Arreglo de imagenes
     private int [] orden;                                               //Orden de las imagenes
@@ -103,7 +103,7 @@ public class Rompecabezas extends Applet implements ActionListener
             if (ordenAleatorio [i] == orden[ultimaCelda])
             {
                 System.out.println ("Ultima celda: " + ordenAleatorio[i] + " en la posicion " + i);
-                ultimaCeldaAleatoria = i;
+                celdaNegra = i;
                 break;
             }
         }
@@ -134,17 +134,24 @@ public class Rompecabezas extends Applet implements ActionListener
 
     public void actionPerformed (ActionEvent e)
     {
+    	int i = 0;
+    	int fila, columna;														//Enteros para saber la posicion del boton presionado
+    	int filaNegra, columnaNegra;											//Enteros para comparar el boton presionado con la celda negra
         boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
-        if (boton != rompecabezas [ultimaCeldaAleatoria])
+        columnaNegra = celdaNegra % columnasRompecabezas;						//Obtenemos la columna de la celda negra
+        filaNegra = celdaNegra / columnasRompecabezas;							//Obtenemos la fila de la celda negra
+        //System.out.println ("Posicion del boton presionado: "+ i);
+
+        /*if (boton != rompecabezas [celdaNegra])
         {
-            if (boton == rompecabezas [ultimaCeldaAleatoria + columnasRompecabezas])
-                rompecabezas [ultimaCeldaAleatoria] = boton;
-            else if (boton == rompecabezas [ultimaCeldaAleatoria - columnasRompecabezas])
-                rompecabezas [ultimaCeldaAleatoria] = boton;
-            else if (boton == rompecabezas [ultimaCeldaAleatoria - 1])
-                rompecabezas [ultimaCeldaAleatoria] = boton;
-            else if (boton == rompecabezas [ultimaCeldaAleatoria + 1])
-                rompecabezas [ultimaCeldaAleatoria] = boton;
+            if (boton == rompecabezas [celdaNegra + columnasRompecabezas])
+                rompecabezas [celdaNegra] = boton;
+            else if (boton == rompecabezas [celdaNegra - columnasRompecabezas])
+                rompecabezas [celdaNegra] = boton;
+            else if (boton == rompecabezas [celdaNegra - 1])
+                rompecabezas [celdaNegra] = boton;
+            else if (boton == rompecabezas [celdaNegra + 1])
+                rompecabezas [celdaNegra] = boton;
             for (int i = 0; i < numeroCeldas; i ++)
             {
                 if (orden [i] != ordenAleatorio [i])
@@ -155,7 +162,7 @@ public class Rompecabezas extends Applet implements ActionListener
                         ganaste.setText ("GANASTE :D");
                 }
             }
-        }
+        }*/
     }
 
     public static void main (String args[])
