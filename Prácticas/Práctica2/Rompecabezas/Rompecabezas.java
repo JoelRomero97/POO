@@ -43,7 +43,7 @@ public class Rompecabezas extends Applet implements ActionListener
 
     public void inicializaVariables ()
     {
-        imagen = (new ImageIcon ("dalmata.jpg")).getImage ();                               //Seleccionamos la imagen para armar
+        imagen = (new ImageIcon ("Rompecabezas.jpg")).getImage ();                          //Seleccionamos la imagen para armar
         negro = (new ImageIcon ("negro.png")).getImage ();                                  //Seleccionamos la imagen de fondo negro
         anchoImagen = imagen.getWidth (null);                                               //Obtenemos el ancho de la imagen
         alturaImagen = imagen.getHeight (null);                                             //Obtenemos la altura de la imagen
