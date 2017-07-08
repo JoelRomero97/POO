@@ -25,6 +25,7 @@ public class Rompecabezas extends Applet implements ActionListener
     private int filasRompecabezas = 4, columnasRompecabezas = 4;        //Filas y columnas que tendrá el rompecabezas
     private int anchoImagen, alturaImagen;                              //Ancho y Alto de la imagen
     private int anchoCelda, altoCelda;                                  //Ancho y Alto de una celda
+    private int nuevaNegra;												//Entero para actualizar la posicion de la celda negra
     private int ultimaCelda, celdaNegra;                      			//Ultima celda que irá de color negro
     private int numeroCeldas;                                           //Numero de celdas
     private Image [] celda;                                             //Arreglo de imagenes
@@ -189,12 +190,12 @@ public class Rompecabezas extends Applet implements ActionListener
     public int obtenerNuevaCeldaNegra (JButton boton)
     {
     	int i;
-    	String descripcion;
-    	String descripcionBoton = ((ImageIcon)boton.getIcon()).getDescription();
+    	Image imagenBoton = ((ImageIcon)boton.getIcon()).getImage();;
+    	Image imagenesRompecabezas;
     	for (i = 0; i < numeroCeldas; i ++)
     	{
-    		descripcion = ((ImageIcon)rompecabezas[i].getIcon()).getDescription();
-    		if (descripcion.equals (descripcionBoton))
+    		imagenesRompecabezas = ((ImageIcon)rompecabezas[i].getIcon()).getImage();
+    		if (imagenesRompecabezas.equals (imagenBoton))
     			break;
     	}
     	return i;
@@ -210,10 +211,10 @@ public class Rompecabezas extends Applet implements ActionListener
         {
         	imagenAuxiliar = ((ImageIcon)boton.getIcon()).getImage();			//Obtenemos la imagen del boton presionado
         	iconoAuxiliar = new ImageIcon (imagenAuxiliar);						//Convertimos la imagen del boton a un ImageIcon
-        	//int au = obtenerNuevaCeldaNegra (boton);
+        	nuevaNegra = obtenerNuevaCeldaNegra (boton);
         	rompecabezas[celdaNegra].setIcon (iconoAuxiliar);					//Ponemos el ImageIcon en la celda negra
         	boton.setIcon (new ImageIcon (imagenNegraFinal));					//Ponemos en el boton presionado, la imagen negra
-        	//celdaNegra = au;
+        	celdaNegra = nuevaNegra;
         }
     }
 
