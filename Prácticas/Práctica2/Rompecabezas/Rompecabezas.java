@@ -94,15 +94,10 @@ public class Rompecabezas extends Applet implements ActionListener
             ordenAleatorio[i - 1] = ordenAleatorio[posicion];
             ordenAleatorio[posicion] = auxiliar;
         }
-        for (int j = 0; j < numeroCeldas; j ++)
-        {
-            System.out.println ("Numero: " + ordenAleatorio[j]);
-        }
         for (int i = 0; i < numeroCeldas; i ++)
         {
             if (ordenAleatorio [i] == orden[ultimaCelda])
             {
-                System.out.println ("Ultima celda: " + ordenAleatorio[i] + " en la posicion " + i);
                 celdaNegra = i;
                 break;
             }
@@ -206,7 +201,7 @@ public class Rompecabezas extends Applet implements ActionListener
         new Rompecabezas ();                                            //Creamos un objeto de tipo Rompecabezas
     }
 
-     public Rompecabezas()
+    public Rompecabezas()
     {
         inicializaVariables ();                                         //Llamamos al método inicializaVariables
         construyeBotones ();                                            //Llamamos al método construyeBotones
