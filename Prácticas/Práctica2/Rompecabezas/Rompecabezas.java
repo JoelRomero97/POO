@@ -13,7 +13,7 @@ import java.util.*;
 //// Realización de un rompecabezas de nxn con una imagen y teniendo una celda en   ////
 //// color negro para presionar alguna de las celdas adyacentes y moverla a donde   ////
 //// está la pieza de color negro para completar el rompecabezas.                   ////
-//// Para modificar la imagen, llamar a imagen deseada "rompecabezas".				////
+//// Para modificar la imagen, llamar a imagen deseada "Rompecabezas".				////
 ////                                                                                ////
 ////                                                                                ////
 //// Autor: Romero Gamarra Joel Mauricio                                            ////
@@ -42,7 +42,6 @@ public class Rompecabezas extends Applet implements ActionListener
     private int ordenAleatorio [];                                      //Arreglo de numeros aleatorio
     private Random rand;                                                //Para obtener los valores aleatorios
     private JButton boton;                                              //Botón para obtener el evento en el ActionPerformed
-    private JLabel ganaste;                                             //Etiqueta para mostrar resultado
 
     public void inicializaVariables ()
     {
@@ -59,7 +58,6 @@ public class Rompecabezas extends Applet implements ActionListener
         rompecabezas = new JButton[numeroCeldas];                                           //Creamos un arreglo de objetos tipo JButton
         ordenAleatorio = new int [numeroCeldas];											//Creamos un arreglo de enteros
         rand = new Random ();																//Inicializamos un Random
-        ganaste = new JLabel ("");															//Inicializamos la etiqueta
     }
 
     public void construyeBotones ()
@@ -190,12 +188,12 @@ public class Rompecabezas extends Applet implements ActionListener
     public int obtenerNuevaCeldaNegra (JButton boton)
     {
     	int i;
-    	Image imagenBoton = ((ImageIcon)boton.getIcon()).getImage();;
+    	Image imagenBoton = ((ImageIcon)boton.getIcon()).getImage();						//Obtenemos la imagen del boton presionado
     	Image imagenesRompecabezas;
     	for (i = 0; i < numeroCeldas; i ++)
     	{
-    		imagenesRompecabezas = ((ImageIcon)rompecabezas[i].getIcon()).getImage();
-    		if (imagenesRompecabezas.equals (imagenBoton))
+    		imagenesRompecabezas = ((ImageIcon)rompecabezas[i].getIcon()).getImage();		//Obtenemos la imagen de todas las piezas
+    		if (imagenesRompecabezas.equals (imagenBoton))									//Comparamos las imagenes
     			break;
     	}
     	return i;
