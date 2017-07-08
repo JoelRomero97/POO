@@ -140,29 +140,57 @@ public class Rompecabezas extends Applet implements ActionListener
         boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
         columnaNegra = celdaNegra % columnasRompecabezas;						//Obtenemos la columna de la celda negra
         filaNegra = celdaNegra / columnasRompecabezas;							//Obtenemos la fila de la celda negra
-        //System.out.println ("Posicion del boton presionado: "+ i);
-
-        /*if (boton != rompecabezas [celdaNegra])
+        if (columnaNegra == 0)													//Estamos en la primera columna
         {
-            if (boton == rompecabezas [celdaNegra + columnasRompecabezas])
-                rompecabezas [celdaNegra] = boton;
-            else if (boton == rompecabezas [celdaNegra - columnasRompecabezas])
-                rompecabezas [celdaNegra] = boton;
-            else if (boton == rompecabezas [celdaNegra - 1])
-                rompecabezas [celdaNegra] = boton;
-            else if (boton == rompecabezas [celdaNegra + 1])
-                rompecabezas [celdaNegra] = boton;
-            for (int i = 0; i < numeroCeldas; i ++)
-            {
-                if (orden [i] != ordenAleatorio [i])
-                    break;
-                else 
-                {
-                    if ((i == ultimaCelda) && orden [i] == ordenAleatorio [i])
-                        ganaste.setText ("GANASTE :D");
-                }
-            }
-        }*/
+        	if (filaNegra == 0)													//Estamos en la primera fila
+        	{
+        		if (boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas])
+        			System.out.println ("Celda adyacente. ");
+        	}else if (filaNegra == filasRompecabezas - 1)						//Estamos en la ultima fila
+        	{
+        		if (boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas])
+        			System.out.println ("Celda adyacente. ");
+        	}else																//Estamos en cualquier otra fila
+        	{
+        		if (boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas] 
+        		|| boton == rompecabezas [celdaNegra - columnasRompecabezas])
+        			System.out.println ("Celda adyacente. ");
+        	}
+        }else if (columnaNegra == columnasRompecabezas - 1)						//Estamos en la ultima columna
+        {
+        	if (filaNegra == 0)													//Estamos en la primera fila
+        	{
+        		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas])
+        			System.out.println ("Celda adyacente. ");
+        	}else if (filaNegra == filasRompecabezas - 1)						//Estamos en la ultima fila
+        	{
+        		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas])
+        			System.out.println ("Celda adyacente. ");
+        	}else																//Estamos en cualquier otra fila
+        	{
+        		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas] 
+        		|| boton == rompecabezas [celdaNegra - columnasRompecabezas])
+        			System.out.println ("Celda adyacente. ");
+        	}
+        }else																	//Estamos en cualquier otra columna
+        {
+        	if (filaNegra == 0)													//Estamos en la primera fila
+        	{
+        		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas] 
+        		|| boton == rompecabezas [celdaNegra + 1])
+        			System.out.println ("Celda adyacente. ");
+        	}else if (filaNegra == filasRompecabezas - 1)						//Estamos en la ultima fila
+        	{
+        		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas] 
+        		|| boton == rompecabezas [celdaNegra + 1])
+        			System.out.println ("Celda adyacente. ");
+        	}else																//Estamos en cualquier otra fila
+        	{
+        		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas] 
+        		|| boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas])
+        			System.out.println ("Celda adyacente. ");
+        	}
+        }
     }
 
     public static void main (String args[])
