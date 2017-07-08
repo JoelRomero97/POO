@@ -132,45 +132,40 @@ public class Rompecabezas extends Applet implements ActionListener
         rompeCabezas.setVisible (true);
     }
 
-    public void actionPerformed (ActionEvent e)
+    public boolean esCeldaAdyacente (JButton boton, int filaNegra, int columnaNegra)
     {
-    	int i = 0;
-    	int fila, columna;														//Enteros para saber la posicion del boton presionado
-    	int filaNegra, columnaNegra;											//Enteros para comparar el boton presionado con la celda negra
-        boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
-        columnaNegra = celdaNegra % columnasRompecabezas;						//Obtenemos la columna de la celda negra
-        filaNegra = celdaNegra / columnasRompecabezas;							//Obtenemos la fila de la celda negra
-        if (columnaNegra == 0)													//Estamos en la primera columna
+    	boolean resp = false;
+    	if (columnaNegra == 0)													//Estamos en la primera columna
         {
         	if (filaNegra == 0)													//Estamos en la primera fila
         	{
         		if (boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}else if (filaNegra == filasRompecabezas - 1)						//Estamos en la ultima fila
         	{
         		if (boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}else																//Estamos en cualquier otra fila
         	{
         		if (boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas] 
         		|| boton == rompecabezas [celdaNegra - columnasRompecabezas])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}
         }else if (columnaNegra == columnasRompecabezas - 1)						//Estamos en la ultima columna
         {
         	if (filaNegra == 0)													//Estamos en la primera fila
         	{
         		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}else if (filaNegra == filasRompecabezas - 1)						//Estamos en la ultima fila
         	{
         		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}else																//Estamos en cualquier otra fila
         	{
         		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas] 
         		|| boton == rompecabezas [celdaNegra - columnasRompecabezas])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}
         }else																	//Estamos en cualquier otra columna
         {
@@ -178,18 +173,31 @@ public class Rompecabezas extends Applet implements ActionListener
         	{
         		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas] 
         		|| boton == rompecabezas [celdaNegra + 1])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}else if (filaNegra == filasRompecabezas - 1)						//Estamos en la ultima fila
         	{
         		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas] 
         		|| boton == rompecabezas [celdaNegra + 1])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}else																//Estamos en cualquier otra fila
         	{
         		if (boton == rompecabezas [celdaNegra - 1] || boton == rompecabezas [celdaNegra - columnasRompecabezas] 
         		|| boton == rompecabezas [celdaNegra + 1] || boton == rompecabezas [celdaNegra + columnasRompecabezas])
-        			System.out.println ("Celda adyacente. ");
+        			resp = true;
         	}
+        }
+        return resp;
+    }
+
+    public void actionPerformed (ActionEvent e)
+    {
+    	int filaNegra, columnaNegra;											//Enteros para comparar el boton presionado con la celda negra
+        boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
+        columnaNegra = celdaNegra % columnasRompecabezas;						//Obtenemos la columna de la celda negra
+        filaNegra = celdaNegra / columnasRompecabezas;							//Obtenemos la fila de la celda negra
+        if (esCeldaAdyacente (boton, filaNegra, columnaNegra))
+        {
+        	System.out.println ("Es adyacente. ");
         }
     }
 
