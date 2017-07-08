@@ -39,6 +39,7 @@ public class Rompecabezas extends Applet implements ActionListener
     private int ordenAleatorio [];                                      //Arreglo de numeros aleatorio
     private Random rand;                                                //Para obtener los valores aleatorios
     private JButton boton;                                              //Botón para obtener el evento en el ActionPerformed
+    private JLabel ganaste;                                             //Etiqueta para mostrar resultado
 
     public void inicializaVariables ()
     {
@@ -55,6 +56,7 @@ public class Rompecabezas extends Applet implements ActionListener
         rompecabezas = new JButton[numeroCeldas];                                           //Creamos un arreglo de objetos tipo JButton
         ordenAleatorio = new int [numeroCeldas];
         rand = new Random ();
+        ganaste = new JLabel ("");
     }
 
     public void construyeBotones ()
@@ -107,15 +109,6 @@ public class Rompecabezas extends Applet implements ActionListener
         }
     }
 
-    public void consruyeVentana ()
-    {
-        JFrame rompeCabezas = new JFrame ("Rompecabezas");
-        rompeCabezas.add ("Center", this);
-        rompeCabezas.setDefaultCloseOperation (WindowConstants.EXIT_ON_CLOSE); 
-        rompeCabezas.setSize (450, 340);
-        rompeCabezas.setVisible (true);
-    }
-
     private void dibujaRompecabezas ()
     {
         for (int i = 0; i < numeroCeldas; i ++)
@@ -130,19 +123,38 @@ public class Rompecabezas extends Applet implements ActionListener
         }
     }
 
+    public void consruyeVentana ()
+    {
+        JFrame rompeCabezas = new JFrame ("Rompecabezas");
+        rompeCabezas.add ("Center", this);
+        rompeCabezas.setDefaultCloseOperation (WindowConstants.EXIT_ON_CLOSE); 
+        rompeCabezas.setSize (450, 340);
+        rompeCabezas.setVisible (true);
+    }
+
     public void actionPerformed (ActionEvent e)
     {
         boton = (JButton) e.getSource ();                                       //Objeto de tipo JButton en el que se produce el evento
         if (boton != rompecabezas [ultimaCeldaAleatoria])
         {
             if (boton == rompecabezas [ultimaCeldaAleatoria + columnasRompecabezas])
-                System.out.println ("Se hizo click");
+                rompecabezas [ultimaCeldaAleatoria] = boton;
             else if (boton == rompecabezas [ultimaCeldaAleatoria - columnasRompecabezas])
-                System.out.println ("Se hizo click");
-            else if (boton == rompecabezas [ultimaCeldaAleatoria + 1])
-                System.out.println ("Se hizo click");
+                rompecabezas [ultimaCeldaAleatoria] = boton;
             else if (boton == rompecabezas [ultimaCeldaAleatoria - 1])
-                System.out.println ("Se hizo click");
+                rompecabezas [ultimaCeldaAleatoria] = boton;
+            else if (boton == rompecabezas [ultimaCeldaAleatoria + 1])
+                rompecabezas [ultimaCeldaAleatoria] = boton;
+            for (int i = 0; i < numeroCeldas; i ++)
+            {
+                if (orden [i] != ordenAleatorio [i])
+                    break;
+                else 
+                {
+                    if ((i == ultimaCelda) && orden [i] == ordenAleatorio [i])
+                        ganaste.setText ("GANASTE :D");
+                }
+            }
         }
     }
 
