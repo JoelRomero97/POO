@@ -13,7 +13,7 @@ import java.util.*;
 //// Realización de un rompecabezas de nxn con una imagen y teniendo una celda en   ////
 //// color negro para presionar alguna de las celdas adyacentes y moverla a donde   ////
 //// está la pieza de color negro para completar el rompecabezas.                   ////
-//// Modiciar línea 41 para cambiar imagen.                                         ////
+//// Para modificar la imagen, llamar a imagen deseada "rompecabezas".				////
 ////                                                                                ////
 ////                                                                                ////
 //// Autor: Romero Gamarra Joel Mauricio                                            ////
