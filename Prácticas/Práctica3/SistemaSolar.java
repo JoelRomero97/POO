@@ -83,7 +83,7 @@ public class SistemaSolar
 		mercurio = new Sphere(0.035f, Primitive.GENERATE_NORMALS | Primitive.GENERATE_TEXTURE_COORDS, 32, aparienciaMercurio);
 		textura = new TextureLoader ("Venus.jpg", null);
 		aparienciaVenus.setTexture (textura.getTexture ());
-		venus = new Sphere(0.095f, Primitive.GENERATE_NORMALS | Primitive.GENERATE_TEXTURE_COORDS, 32, aparienciaVenus);
+		venus = new Sphere(0.08f, Primitive.GENERATE_NORMALS | Primitive.GENERATE_TEXTURE_COORDS, 32, aparienciaVenus);
 		textura = new TextureLoader("Tierra.jpg", null);
 		aparienciaTierra.setTexture(textura.getTexture());
 		tierra = new Sphere (0.085f, Primitive.GENERATE_NORMALS | Primitive.GENERATE_TEXTURE_COORDS, 32, aparienciaTierra);
@@ -104,14 +104,18 @@ public class SistemaSolar
 		rotacionTierra = Movimiento.rotar (tierra, new Alpha (-1, 1250));
 		traslacionTierra = Movimiento.trasladar (rotacionTierra, new Vector3f (0.0f, 0.0f, 0.85f));
 		rotacionTierra2 = Movimiento.rotar(traslacionTierra, new Alpha(-1, 5000));
+		rotacionMarte = Movimiento.rotar (marte, new Alpha (-1, 1250));
+		traslacionMarte = Movimiento.trasladar (rotacionMarte, new Vector3f (0.0f, 0.0f, 1.05f));
+		rotacionMarte2 = Movimiento.rotar(traslacionMarte, new Alpha(-1, 5000));
 	}
 
 	public void pintarPlanetas ()
 	{
 		planetario.addChild (rotacionSol);
-		planetario.addChild (rotacionTierra2);
 		planetario.addChild (rotacionMercurio2);
 		planetario.addChild (rotacionVenus2);
+		planetario.addChild (rotacionTierra2);
+		planetario.addChild (rotacionMarte2);
     	universo.addBranchGraph(planetario);
 	}
 
