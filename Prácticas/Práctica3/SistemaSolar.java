@@ -98,8 +98,11 @@ public class SistemaSolar
 		rotacionMercurio = Movimiento.rotar (mercurio, new Alpha (-1, 1250));
 		traslacionMercurio = Movimiento.trasladar (rotacionMercurio, new Vector3f (0.0f, 0.0f, 0.5f));
 		rotacionMercurio2 = Movimiento.rotar(traslacionMercurio, new Alpha(-1, 5000));
+		rotacionVenus = Movimiento.rotar (venus, new Alpha (-1, 1250));
+		traslacionVenus = Movimiento.trasladar (rotacionVenus, new Vector3f (0.0f, 0.0f, 0.65f));
+		rotacionVenus2 = Movimiento.rotar(traslacionVenus, new Alpha(-1, 5000));
 		rotacionTierra = Movimiento.rotar (tierra, new Alpha (-1, 1250));
-		traslacionTierra = Movimiento.trasladar (rotacionTierra, new Vector3f (0.0f, 0.0f, 0.9f));
+		traslacionTierra = Movimiento.trasladar (rotacionTierra, new Vector3f (0.0f, 0.0f, 0.85f));
 		rotacionTierra2 = Movimiento.rotar(traslacionTierra, new Alpha(-1, 5000));
 	}
 
@@ -108,6 +111,7 @@ public class SistemaSolar
 		planetario.addChild (rotacionSol);
 		planetario.addChild (rotacionTierra2);
 		planetario.addChild (rotacionMercurio2);
+		planetario.addChild (rotacionVenus2);
     	universo.addBranchGraph(planetario);
 	}
 
