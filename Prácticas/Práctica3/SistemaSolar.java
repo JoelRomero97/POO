@@ -97,16 +97,16 @@ public class SistemaSolar
 		rotacionSol = Movimiento.rotar (sol, new Alpha (-1, 1250));
 		rotacionMercurio = Movimiento.rotar (mercurio, new Alpha (-1, 1250));
 		traslacionMercurio = Movimiento.trasladar (rotacionMercurio, new Vector3f (0.0f, 0.0f, 0.5f));
-		rotacionMercurio2 = Movimiento.rotar(traslacionMercurio, new Alpha(-1, 5000));
+		rotacionMercurio2 = Movimiento.rotar(traslacionMercurio, new Alpha(-1, 3000));
 		rotacionVenus = Movimiento.rotar (venus, new Alpha (-1, 1250));
 		traslacionVenus = Movimiento.trasladar (rotacionVenus, new Vector3f (0.0f, 0.0f, 0.65f));
-		rotacionVenus2 = Movimiento.rotar(traslacionVenus, new Alpha(-1, 5000));
+		rotacionVenus2 = Movimiento.rotar(traslacionVenus, new Alpha(-1, 4800));
 		rotacionTierra = Movimiento.rotar (tierra, new Alpha (-1, 1250));
 		traslacionTierra = Movimiento.trasladar (rotacionTierra, new Vector3f (0.0f, 0.0f, 0.85f));
 		rotacionTierra2 = Movimiento.rotar(traslacionTierra, new Alpha(-1, 5000));
 		rotacionMarte = Movimiento.rotar (marte, new Alpha (-1, 1250));
 		traslacionMarte = Movimiento.trasladar (rotacionMarte, new Vector3f (0.0f, 0.0f, 1.05f));
-		rotacionMarte2 = Movimiento.rotar(traslacionMarte, new Alpha(-1, 5000));
+		rotacionMarte2 = Movimiento.rotar(traslacionMarte, new Alpha(-1, 7000));
 	}
 
 	public void pintarPlanetas ()
