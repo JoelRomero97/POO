@@ -25,14 +25,29 @@ public class SistemaSolar
 	private JFrame planetas;
 	private BranchGroup planetario;
 	private Appearance aparienciaSol;
+	private Appearance aparienciaMercurio;
+	private Appearance aparienciaVenus;
 	private Appearance aparienciaTierra;
+	private Appearance aparienciaMarte;
 	private TextureLoader textura;
-	private Sphere tierra;
 	private Sphere sol;
-	private TransformGroup rotacionTierra;
+	private Sphere mercurio;
+	private Sphere venus;
+	private Sphere tierra;
+	private Sphere marte;
 	private TransformGroup rotacionSol;
+	private TransformGroup rotacionMercurio;
+	private TransformGroup traslacionMercurio;
+	private TransformGroup rotacionMercurio2;
+	private TransformGroup rotacionVenus;
+	private TransformGroup traslacionVenus;
+	private TransformGroup rotacionVenus2;
+	private TransformGroup rotacionTierra;
 	private TransformGroup traslacionTierra;
 	private TransformGroup rotacionTierra2;
+	private TransformGroup rotacionMarte;
+	private TransformGroup traslacionMarte;
+	private TransformGroup rotacionMarte2;
 	private GraphicsConfiguration configuracion;
 	private Canvas3D lienzo;
 	private SimpleUniverse universo;
@@ -52,6 +67,8 @@ public class SistemaSolar
     	planetas.setSize (700, 500);
     	planetas.setVisible(true); 
 		aparienciaSol = new Appearance ();
+		aparienciaMercurio = new Appearance ();
+		aparienciaVenus = new Appearance ();
 		aparienciaTierra = new Appearance ();
 	}
 
